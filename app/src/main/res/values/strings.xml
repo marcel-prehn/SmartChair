@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SmartChair</string>
+    <string name="tutorialHello">
+        <![CDATA[
+            In this tutorial you will see some basic advices about the correct sitting position in general.\n
+            \n
+            It consists of three parts:\n
+            1. The right angle of sitting correctly on a chair\n
+            2. Not to cross your legs\n
+            3. To empty your back-pockets\n
+            \n
+            These advices will help you to optimize the way you are sitting and to avoid uneven load on your backbone.
+        ]]>
+    </string>
 </resources>

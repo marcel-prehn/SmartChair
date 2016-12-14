@@ -10,18 +10,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle2"
         android:textSize="24sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:paddingTop="20dp" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
         android:src="@drawable/sitting"
-        android:id="@+id/img2" />
+        android:id="@+id/img2"
+        android:layout_height="430dp" />
 
     <TextView
         android:text="Swipe to continue >>>"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/tvSwipe2"
         android:textAlignment="center" />
 

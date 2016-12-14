@@ -11,18 +11,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvTitleHello"
         android:textSize="24sp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:paddingTop="20dp"/>
 
     <TextView
-        android:text="In this tutorial..."
+        android:text="@string/tutorialHello"
         android:layout_width="match_parent"
         android:id="@+id/tvContentHello"
-        android:layout_height="450dp" />
+        android:padding="20dp"
+        android:layout_height="430dp" />
 
     <TextView
         android:text="Swipe to continue >>>"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/tvSwipeHello"
         android:textAlignment="center" />
 </LinearLayout>
