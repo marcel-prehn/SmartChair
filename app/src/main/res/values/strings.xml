@@ -1,15 +1,24 @@
 <resources>
     <string name="app_name">SmartChair</string>
-    <string name="tutorialHello">
-        <![CDATA[
-            In this tutorial you will see some basic advices about the correct sitting position in general.\n
-            \n
-            It consists of three parts:\n
-            1. The right angle of sitting correctly on a chair\n
-            2. Not to cross your legs\n
-            3. To empty your back-pockets\n
-            \n
-            These advices will help you to optimize the way you are sitting and to avoid uneven load on your backbone.
-        ]]>
+
+    <string name="tutorialTitleHello"><b>Hello!</b></string>
+    <string name="tutorialTextHello">
+        In this tutorial you will see some basic advices about the correct sitting position in general.\n
+        \n
+        It consists of <b>three parts</b>:\n
+        1. The right angle of sitting correctly on a chair\n
+        2. Not to cross your legs\n
+        3. To empty your back-pockets\n
+        \n
+        These advices will help you to optimize the way you are sitting and to avoid uneven load on your backbone.
     </string>
+    <string name="tutorialTitle1">Step 1 - The Right Angle</string>
+    <string name="tutorialTitle2">Step 2 - Do Not Cross Legs</string>
+    <string name="tutorialTitle3">Step 3 - Empty Pockets</string>
+    <string name="tutorialText1">Lorem Ipsum</string>
+    <string name="tutorialText2">Lorem Ipsum</string>
+    <string name="tutorialText3">Lorem Ipsum</string>
+    <string name="tutorialSwipe">Swipe to continue</string>
+    <string name="tutorialButtonClose">Close Tutorial</string>
+    <string name="tutorialImageDescr">Tutorial Image</string>
 </resources>

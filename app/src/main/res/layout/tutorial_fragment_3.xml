@@ -5,24 +5,31 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Step 3 - Empty Pockets"
+        android:text="@string/tutorialTitle3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTitle3"
+        android:id="@+id/tvTutorialTitle3"
         android:textSize="24sp"
         android:textAlignment="center"
         android:paddingTop="20dp" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="430dp"
         android:src="@drawable/sitting"
-        android:id="@+id/img3"
-        android:scaleType="center" />
+        android:id="@+id/ivTutorial3"
+        android:layout_height="250dp"
+        android:contentDescription="@string/tutorialImageDescr" />
+
+    <TextView
+        android:text="@string/tutorialText3"
+        android:layout_width="match_parent"
+        android:id="@+id/tvTutorialText3"
+        android:layout_height="160dp"
+        android:padding="10dp" />
 
     <Button
-        android:text="Close"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/btClose" />
+        android:id="@+id/btTutorialClose"
+        android:text="@string/tutorialButtonClose" />
 </LinearLayout>

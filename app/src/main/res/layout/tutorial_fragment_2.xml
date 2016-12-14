@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Step 2 - Do Not Cross Legs"
+        android:text="@string/tutorialTitle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTitle2"
+        android:id="@+id/tvTutorialTitle2"
         android:textSize="24sp"
         android:textAlignment="center"
         android:paddingTop="20dp" />
@@ -16,14 +17,22 @@
     <ImageView
         android:layout_width="match_parent"
         android:src="@drawable/sitting"
-        android:id="@+id/img2"
-        android:layout_height="430dp" />
+        android:id="@+id/ivTutorial2"
+        android:layout_height="250dp"
+        android:contentDescription="@string/tutorialImageDescr" />
 
     <TextView
-        android:text="Swipe to continue >>>"
+        android:text="@string/tutorialText2"
+        android:layout_width="match_parent"
+        android:id="@+id/tvTutorialText2"
+        android:padding="10dp"
+        android:layout_height="190dp" />
+
+    <TextView
+        android:text="@string/tutorialSwipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tvSwipe2"
+        android:id="@+id/tvTutorialSwipe2"
         android:textAlignment="center" />
 
 </LinearLayout>

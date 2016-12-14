@@ -19,7 +19,7 @@ public class TutorialFragment3 extends Fragment {
         try {
 
             ViewGroup view = (ViewGroup) inflater.inflate(R.layout.tutorial_fragment_3, container, false);
-            btClose = (Button) view.findViewById(R.id.btClose);
+            btClose = (Button) view.findViewById(R.id.btTutorialClose);
             btClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
