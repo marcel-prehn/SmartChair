@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Step 1 - The Right Angle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTitle1"
+        android:textSize="24sp"
+        android:textAlignment="center" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:src="@drawable/sitting"
+        android:id="@+id/img1"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:text="Swipe to continue >>>"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSwipe1"
+        android:textAlignment="center" />
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Hello!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTitleHello"
+        android:textSize="24sp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="In this tutorial..."
+        android:layout_width="match_parent"
+        android:id="@+id/tvContentHello"
+        android:layout_height="450dp" />
+
+    <TextView
+        android:text="Swipe to continue >>>"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSwipeHello"
+        android:textAlignment="center" />
+</LinearLayout>

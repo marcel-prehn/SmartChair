@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Tutorial"
+        android:id="@+id/menuTutorial" />
+    <item android:title="Reconnect"
+        android:id="@+id/menuReconnect" />
+    <item android:title="About"
+        android:id="@+id/menuAbout" />
+</menu>
