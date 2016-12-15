@@ -11,7 +11,7 @@ public class Sensor {
     }
 
     public void setId(int id) {
-        if(id > -1) {
+        if(id >= 0) {
             this.id = id;
         }
     }
@@ -21,7 +21,7 @@ public class Sensor {
     }
 
     public void setValue(int value) {
-        if(value > -1) {
+        if(value >= 0) {
             this.value = value;
         }
     }

@@ -71,10 +71,10 @@ public class SelectDevice extends Activity {
             case R.id.menuTutorial:
                 startActivity(new Intent(SelectDevice.this, Tutorial.class));
                 return true;
-            //TODO activities definieren
             case R.id.menuReconnect:
                 return true;
             case R.id.menuAbout:
+                startActivity(new Intent(SelectDevice.this, About.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

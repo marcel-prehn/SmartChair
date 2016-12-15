@@ -42,4 +42,8 @@ public class SmartChair {
             return null;
         }
     }
+
+    public void measureLoad() {
+
+    }
 }

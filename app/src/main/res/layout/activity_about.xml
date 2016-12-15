@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="uni.marcel.smartchair.About">
 
-    <TextView
-        android:text="@string/aboutTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/tvAboutTitle"
-        android:textSize="24sp"
-        android:textAlignment="center" />
+        <TextView
+            android:text="@string/aboutTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/tvAboutTitle"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:paddingTop="20dp" />
 
-    <Button
-        android:text="@string/aboutClose"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvAboutText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/btAboutClose" />
+        <TextView
+            android:text="@string/aboutText"
+            android:layout_width="match_parent"
+            android:id="@+id/tvAboutText"
+            android:layout_below="@+id/tvAboutTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:padding="20dp"
+            android:layout_height="410dp" />
 
-    <TextView
-        android:text="@string/aboutText"
-        android:layout_width="match_parent"
-        android:id="@+id/tvAboutText"
-        android:layout_height="420dp"
-        android:layout_below="@+id/tvAboutTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="20dp" />
-</RelativeLayout>
+        <Button
+            android:text="@string/aboutClose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btAboutClose"
+            android:layout_below="@+id/tvAboutText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+</LinearLayout>
