@@ -151,6 +151,7 @@ public class Overview extends Activity {
         ImageView imgOverview = (ImageView)findViewById(R.id.imgOverview);
         if(sensors != null && sensors.length == 8) {
             //TODO Threshold values
+            final int THRESHOLD = 20;
             int left = sensors[0].getValue() + sensors[3].getValue() + sensors[5].getValue();
             int right = sensors[2].getValue() + sensors[4].getValue() + sensors[7].getValue();
             int front = sensors[0].getValue() + sensors[1].getValue() + sensors[2].getValue();
@@ -164,33 +165,71 @@ public class Overview extends Activity {
             int sensor6 = sensors[6].getValue();
             int sensor7 = sensors[7].getValue();
 
+            // front
+            if(front > back) {
+                // sensor0
+                if(sensor0 > sensor2) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_0);
+                }
+                // sensor2
+                else if(sensor0 < sensor2) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_2);
+                }
+                // front
+                else {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_front);
+                }
+            }
+            // back
+            if(front < back) {
+                // sensor5
+                if(sensor5 > sensor7) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_5);
+                }
+                // sensor7
+                else if(sensor5 < sensor7) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_7);
+                }
+                // back
+                else {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_back);
+                }
+            }
+            // left
+            if(left > right) {
+                // sensor0
+                if(sensor0 > sensor5) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_0);
+                }
+                // sensor5
+                else if(sensor0 < sensor5) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_5);
+                }
+                // left
+                else {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_left);
+                }
+            }
+            // right
+            if(left < right) {
+                // sensor2
+                if(sensor2 > sensor7) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_2);
+                }
+                // sensor7
+                else if(sensor2 < sensor7) {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_7);
+                }
+                // right
+                else {
+                    imgOverview.setImageResource(R.drawable.smartchair_overview_right);
+                }
+            }
+            // reset seat
             if(left == right && front == back) {
                 imgOverview.setImageResource(R.drawable.smartchair_overview2);
             }
-            if(sensor0 > sensor2 && sensor3 > sensor4 && sensor5 > sensor7) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_left);
-            }
-            if(sensor0 < sensor2 && sensor3 < sensor4 && sensor5 < sensor7) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_right);
-            }
-            if(sensor0 > sensor5 && sensor1 > sensor6 && sensor2 > sensor7) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_front);
-            }
-            if(sensor0 < sensor5 && sensor1 < sensor6 && sensor2 < sensor7) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_back);
-            }
-            if(sensor0 > sensor1 && sensor0 > sensor2) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_0);
-            }
-            if(sensor2 > sensor0 && sensor2 > sensor1) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_2);
-            }
-            if(sensor5 > sensor7 && sensor5 > sensor6) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_5);
-            }
-            if(sensor7 > sensor5 && sensor7 > sensor6) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview_7);
-            }
+
         }
     }
 
