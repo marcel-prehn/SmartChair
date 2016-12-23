@@ -52,8 +52,8 @@ public class Overview extends Activity {
     private void Initialize() {
         bt = new BtAdapter();
         textViews = new TextView[8];
-        tvDeviceValue = (TextView)findViewById(R.id.tvDeviceValue);
-        tvStatusValue = (TextView)findViewById(R.id.tvStatusValue);
+        //tvDeviceValue = (TextView)findViewById(R.id.tvDeviceValue);
+        //tvStatusValue = (TextView)findViewById(R.id.tvStatusValue);
         tvLoad0 = (TextView)findViewById(R.id.tvLoad0);
         tvLoad1 = (TextView)findViewById(R.id.tvLoad1);
         tvLoad2 = (TextView)findViewById(R.id.tvLoad2);
@@ -77,10 +77,10 @@ public class Overview extends Activity {
         String deviceName = intentSelectDevice.getStringExtra("deviceName");
         if(deviceName != "") {
             this.deviceName = deviceName;
-            tvDeviceValue.setText(deviceName);
+            //tvDeviceValue.setText(deviceName);
         }
         else {
-            tvDeviceValue.setText("No Device Selected");
+            //tvDeviceValue.setText("No Device Selected");
         }
     }
 
@@ -96,8 +96,8 @@ public class Overview extends Activity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Overview.this, "connecting...", Toast.LENGTH_SHORT).show();
-                                    tvStatusValue.setText("connecting...");
+                                    Toast.makeText(Overview.this, "connecting...", Toast.LENGTH_LONG).show();
+                                    //tvStatusValue.setText("connecting...");
                                 }
                             });
                         }
@@ -107,7 +107,7 @@ public class Overview extends Activity {
                     }
                 };
                 conn.run();
-                tvStatusValue.setText("connected");
+                //tvStatusValue.setText("connected");
             }
         } catch (Exception ex) {
             Log.e("io error, overview read", ex.toString());

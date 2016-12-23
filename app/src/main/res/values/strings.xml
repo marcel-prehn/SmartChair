@@ -35,4 +35,30 @@
     <string name="tutorialSwipe">Swipe to continue</string>
     <string name="tutorialButtonClose">Close Tutorial</string>
     <string name="tutorialImageDescr">Tutorial Image</string>
+    <string name="overviewAdviceTitle">Advice</string>
+    <string name="overviewAdviceText1">
+        Nam semper, sapien ac congue vehicula, nisi elit lacinia neque, quis mollis quam dui in metus. \n
+        Maecenas maximus augue magna. Phasellus semper ex ut metus porta elementum. \n
+        Nullam sit amet odio quis tellus rhoncus hendrerit.
+    </string>
+    <string name="overviewAdviceText2">
+        Nam semper, sapien ac congue vehicula, nisi elit lacinia neque, quis mollis quam dui in metus. \n
+        Maecenas maximus augue magna. Phasellus semper ex ut metus porta elementum. \n
+        Nullam sit amet odio quis tellus rhoncus hendrerit.
+    </string>
+    <string name="overviewAdviceText3">
+        Nam semper, sapien ac congue vehicula, nisi elit lacinia neque, quis mollis quam dui in metus. \n
+        Maecenas maximus augue magna. Phasellus semper ex ut metus porta elementum. \n
+        Nullam sit amet odio quis tellus rhoncus hendrerit.
+    </string>
+    <string name="overviewAdviceText4">
+        Nam semper, sapien ac congue vehicula, nisi elit lacinia neque, quis mollis quam dui in metus. \n
+        Maecenas maximus augue magna. Phasellus semper ex ut metus porta elementum. \n
+        Nullam sit amet odio quis tellus rhoncus hendrerit.
+    </string>
+    <string name="overviewAdviceText5">
+        Nam semper, sapien ac congue vehicula, nisi elit lacinia neque, quis mollis quam dui in metus. \n
+        Maecenas maximus augue magna. Phasellus semper ex ut metus porta elementum. \n
+        Nullam sit amet odio quis tellus rhoncus hendrerit.
+    </string>
 </resources>
