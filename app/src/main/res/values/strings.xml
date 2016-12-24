@@ -62,4 +62,5 @@
         Nullam sit amet odio quis tellus rhoncus hendrerit.
     </string>
     <string name="timer">00:00 min</string>
+    <string name="firstStart"></string>
 </resources>

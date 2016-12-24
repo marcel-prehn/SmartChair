@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -79,5 +81,27 @@ public class SelectDevice extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            boolean isFirstStart = pref.getBoolean(getString(R.string.firstStart), false);
+            if(!isFirstStart) {
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putBoolean(getString(R.string.firstStart), Boolean.TRUE);
+                editor.commit();
+                ShowTutorial();
+            }
+        }
+        catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
+    }
+
+    private void ShowTutorial() {
+        startActivity(new Intent(SelectDevice.this, Tutorial.class));
     }
 }
