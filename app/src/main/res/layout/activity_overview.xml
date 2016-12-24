@@ -18,6 +18,15 @@
         android:background="@color/lightGrey">
 
         <TextView
+            android:text="@string/timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTimer"
+            android:textSize="15sp"
+            android:padding="0dp"
+            android:textAlignment="center"/>
+
+        <TextView
             android:text="@string/overviewAdviceTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
