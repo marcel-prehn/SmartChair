@@ -73,7 +73,8 @@ public class SelectDevice extends Activity {
             case R.id.menuTutorial:
                 startActivity(new Intent(SelectDevice.this, Tutorial.class));
                 return true;
-            case R.id.menuReconnect:
+            case R.id.menuSettings:
+                startActivity(new Intent(SelectDevice.this, Settings.class));
                 return true;
             case R.id.menuAbout:
                 startActivity(new Intent(SelectDevice.this, About.class));

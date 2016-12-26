@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SmartChair</string>
     <string name="menuTutorial">Open Tutorial</string>
-    <string name="menuReconnect">Reconnect Device</string>
+    <string name="menuSettings">Settings</string>
     <string name="menuAbout">About</string>
     <string name="aboutTitle">About SmartChair</string>
     <string name="aboutText">
