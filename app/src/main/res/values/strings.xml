@@ -79,4 +79,9 @@
     <string name="firstStart"></string>
     <string name="settingsTimer">Timer Interval in s</string>
     <string name="settingsSave">Save and Close</string>
+    <string-array name="settingsTimerInterval">
+        <item>10 Seconds</item>
+        <item>30 Seconds</item>
+        <item>60 Seconds</item>
+    </string-array>
 </resources>

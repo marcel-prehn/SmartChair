@@ -84,7 +84,6 @@ public class Overview extends Activity {
     }
 
     private void StartTimer() {
-        //DEBUG
         final int INTERVAL = 30000;
         try {
             timer = new CountDownTimer(INTERVAL, 1000) {

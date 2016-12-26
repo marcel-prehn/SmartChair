@@ -10,45 +10,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uni.marcel.smartchair.Settings">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:text="@string/settingsTimer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSettingsTimer"
+        android:layout_weight="1" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="420dp">
+    <Button
+        android:text="@string/settingsSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btSettingsSave"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-            <TextView
-                android:text="@string/settingsTimer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvSettingsTimer"
-                android:layout_weight="1" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_weight="1"
+        android:layout_below="@+id/tvSettingsTimer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberSigned"
-                android:ems="10"
-                android:id="@+id/txSettingsTimer"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:text="@string/settingsSave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btSettingsSave"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>
