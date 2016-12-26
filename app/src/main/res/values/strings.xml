@@ -77,4 +77,6 @@
     </string>
     <string name="timer">00:00 min</string>
     <string name="firstStart"></string>
+    <string name="settingsTimer">Timer Interval in s</string>
+    <string name="settingsSave">Save and Close</string>
 </resources>
