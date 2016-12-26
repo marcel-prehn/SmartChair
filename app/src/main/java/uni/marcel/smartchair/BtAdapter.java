@@ -13,7 +13,6 @@ import java.util.Set;
 public class BtAdapter {
     private BluetoothAdapter blueAdapter;
     private Set<BluetoothDevice> bondedDevices;
-    private OutputStream outputStream;
     private InputStream inStream;
     private BluetoothDevice device;
     private BluetoothSocket socket;
@@ -42,15 +41,11 @@ public class BtAdapter {
                     device = b;
                 }
             }
-            //Object[] devices = (Object []) bondedDevices.toArray();
-            //BluetoothDevice device = (BluetoothDevice) devices[position];
 
             Log.d("info", "device name: " + deviceName);
-
             ParcelUuid[] uuids = device.getUuids();
             Log.d("info", "device uuid: " + uuids[0]);
 
-            //socket = device.createInsecureRfcommSocketToServiceRecord(uuids[0].getUuid());
             blueAdapter.cancelDiscovery();
             BtThread btThread = new BtThread(device);
             btThread.start();
@@ -123,7 +118,7 @@ public class BtAdapter {
                     sensors[i] = new Sensor(i, 0);
                 }
                 else {
-                    sensors[i] = new Sensor(i, (int)Integer.valueOf(values[i]));
+                    sensors[i] = new Sensor(i, Integer.valueOf(values[i]));
                 }
             }
             return sensors;

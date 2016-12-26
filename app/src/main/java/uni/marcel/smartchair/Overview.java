@@ -2,29 +2,25 @@ package uni.marcel.smartchair;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
-import java.io.InterruptedIOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Overview extends Activity {
 
     private BtAdapter bt;
     private String deviceName;
     private Thread threadRead;
+    private SmartChair chair;
+    private CountDownTimer timer;
 
-    TextView tvDeviceValue;
-    TextView tvStatusValue;
     TextView tvLoad0;
     TextView tvLoad1;
     TextView tvLoad2;
@@ -34,6 +30,8 @@ public class Overview extends Activity {
     TextView tvLoad6;
     TextView tvLoad7;
     TextView[] textViews;
+    TextView tvAdvice;
+    TextView tvTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,9 @@ public class Overview extends Activity {
         setContentView(R.layout.activity_overview);
 
         try {
-            Initialize();
             SetDeviceName();
+            Initialize();
+            StartTimer();
         }
         catch (Exception ex) {
             Log.e("oncreate", ex.getMessage());
@@ -51,9 +50,12 @@ public class Overview extends Activity {
 
     private void Initialize() {
         bt = new BtAdapter();
+        //chair = new SmartChair(deviceName);
+
+
+
+        tvAdvice = (TextView) findViewById(R.id.tvAdviceText);
         textViews = new TextView[8];
-        //tvDeviceValue = (TextView)findViewById(R.id.tvDeviceValue);
-        //tvStatusValue = (TextView)findViewById(R.id.tvStatusValue);
         tvLoad0 = (TextView)findViewById(R.id.tvLoad0);
         tvLoad1 = (TextView)findViewById(R.id.tvLoad1);
         tvLoad2 = (TextView)findViewById(R.id.tvLoad2);
@@ -70,6 +72,7 @@ public class Overview extends Activity {
         textViews[5] = tvLoad5;
         textViews[6] = tvLoad6;
         textViews[7] = tvLoad7;
+        tvTimer = (TextView) findViewById(R.id.tvTimer);
     }
 
     private void SetDeviceName() {
@@ -77,11 +80,35 @@ public class Overview extends Activity {
         String deviceName = intentSelectDevice.getStringExtra("deviceName");
         if(deviceName != "") {
             this.deviceName = deviceName;
-            //tvDeviceValue.setText(deviceName);
         }
-        else {
-            //tvDeviceValue.setText("No Device Selected");
+    }
+
+    private void StartTimer() {
+        //DEBUG
+        final int INTERVAL = 30000;
+        try {
+            timer = new CountDownTimer(INTERVAL, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    tvTimer.setText(String.format("%02d:%02d", millisUntilFinished / 60000, millisUntilFinished / 1000));
+                }
+
+                @Override
+                public void onFinish() {
+                    tvTimer.setText("Stand up. Tap to restart Timer.");
+                    tvTimer.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            StartTimer();
+                        }
+                    });
+                }
+            }.start();
         }
+        catch (Exception ex) {
+
+        }
+
     }
 
     private void Connect() throws IOException {
@@ -92,25 +119,28 @@ public class Overview extends Activity {
                     public void run() {
                         try {
                             bt.connect(deviceName);
-
+                            //chair.connect();
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Overview.this, "connecting...", Toast.LENGTH_LONG).show();
-                                    //tvStatusValue.setText("connecting...");
+                                    Toast.makeText(Overview.this, "connecting...", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
-                        catch (IOException ex) {
+                        //catch (IOException ex) {
+                        catch (Exception ex) {
                             Log.e("io error, overview read", ex.toString());
                         }
                     }
                 };
                 conn.run();
-                //tvStatusValue.setText("connected");
             }
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             Log.e("io error, overview read", ex.toString());
+        }
+        finally {
+            Toast.makeText(Overview.this, "connected", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -121,6 +151,7 @@ public class Overview extends Activity {
                 try {
                     while(threadRead.isInterrupted() == false) {
                         Thread.sleep(500);
+                        //final Sensor[] sensors = chair.getSensors();
                         final Sensor[] sensors = bt.read();
                         runOnUiThread(new Runnable() {
                             @Override
@@ -170,14 +201,17 @@ public class Overview extends Activity {
                 // sensor0
                 if(sensor0 > sensor2) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_0);
+                    tvAdvice.setText(R.string.overviewAdviceText2);
                 }
                 // sensor2
                 else if(sensor0 < sensor2) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_2);
+                    tvAdvice.setText(R.string.overviewAdviceText3);
                 }
                 // front
                 else {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_front);
+                    tvAdvice.setText(R.string.overviewAdviceText4);
                 }
             }
             // back
@@ -185,14 +219,17 @@ public class Overview extends Activity {
                 // sensor5
                 if(sensor5 > sensor7) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_5);
+                    tvAdvice.setText(R.string.overviewAdviceText5);
                 }
                 // sensor7
                 else if(sensor5 < sensor7) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_7);
+                    tvAdvice.setText(R.string.overviewAdviceText6);
                 }
                 // back
                 else {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_back);
+                    tvAdvice.setText(R.string.overviewAdviceText7);
                 }
             }
             // left
@@ -200,14 +237,17 @@ public class Overview extends Activity {
                 // sensor0
                 if(sensor0 > sensor5) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_0);
+                    tvAdvice.setText(R.string.overviewAdviceText8);
                 }
                 // sensor5
                 else if(sensor0 < sensor5) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_5);
+                    tvAdvice.setText(R.string.overviewAdviceText9);
                 }
                 // left
                 else {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_left);
+                    tvAdvice.setText(R.string.overviewAdviceText10);
                 }
             }
             // right
@@ -215,19 +255,23 @@ public class Overview extends Activity {
                 // sensor2
                 if(sensor2 > sensor7) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_2);
+                    tvAdvice.setText(R.string.overviewAdviceText11);
                 }
                 // sensor7
                 else if(sensor2 < sensor7) {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_7);
+                    tvAdvice.setText(R.string.overviewAdviceText12);
                 }
                 // right
                 else {
                     imgOverview.setImageResource(R.drawable.smartchair_overview_right);
+                    tvAdvice.setText(R.string.overviewAdviceText13);
                 }
             }
             // reset seat
             if(left == right && front == back) {
                 imgOverview.setImageResource(R.drawable.smartchair_overview2);
+                tvAdvice.setText(R.string.overviewAdviceText1);
             }
 
         }
