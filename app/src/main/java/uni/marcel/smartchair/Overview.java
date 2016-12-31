@@ -2,8 +2,10 @@ package uni.marcel.smartchair;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -84,6 +86,7 @@ public class Overview extends Activity {
     }
 
     private void StartTimer() {
+        //final int timerInterval = getResources().getInteger(R.integer.timerInterval);
         final int INTERVAL = 30000;
         try {
             timer = new CountDownTimer(INTERVAL, 1000) {
@@ -105,7 +108,7 @@ public class Overview extends Activity {
             }.start();
         }
         catch (Exception ex) {
-
+            Log.e("timer", ex.getMessage());
         }
 
     }
