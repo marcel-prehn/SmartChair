@@ -1,32 +1,15 @@
 package uni.marcel.smartchair;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import java.io.IOException;
-
 public class SmartChair {
 
     private Sensor[] sensors;
-    private String device;
-    private BtAdapter bt;
+    private int THRESHOLD = 50;
 
-    public SmartChair(String deviceName) {
-        bt = new BtAdapter();
-        this.device = deviceName;
-    }
+    public SmartChair() {
 
-    public void connect() {
-        try {
-            bt.connect(device);
-        }
-        catch (Exception ex) {
-            Log.e("error", "smartchair read " + ex.toString());
-        }
     }
 
     public Sensor[] getSensors() {
-        this.sensors = bt.read();
         return this.sensors;
     }
 
@@ -61,7 +44,12 @@ public class SmartChair {
         }
     }
 
-    public void measureLoad() {
+    //TODO messung der last in seat klasse
+    public Sensor measureLoad() {
+        Sensor sensor = null;
 
+
+
+        return sensor;
     }
 }
