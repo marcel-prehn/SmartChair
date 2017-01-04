@@ -17,21 +17,36 @@
     <string name="aboutClose">Close</string>
     <string name="tutorialTitleHello"><b>Hello!</b></string>
     <string name="tutorialTextHello">
-        In this tutorial you will see some basic advices about the correct sitting position in general.\n
-        \n
+        In this tutorial you will see some basic advices about the correct sitting position in general.\n\n
         It consists of <b>three parts</b>:\n
         1. The right angle of sitting correctly on a chair\n
         2. Not to cross your legs\n
         3. To empty your back-pockets\n
         \n
-        These advices will help you to optimize the way you are sitting and to avoid uneven load on your backbone.
+        These advices will help you to optimize the way you are sitting and to avoid uneven
+        load on your backbone.
     </string>
     <string name="tutorialTitle1">Step 1 - The Right Angle</string>
     <string name="tutorialTitle2">Step 2 - Do Not Cross Legs</string>
     <string name="tutorialTitle3">Step 3 - Empty Pockets</string>
-    <string name="tutorialText1">Lorem Ipsum</string>
-    <string name="tutorialText2">Lorem Ipsum</string>
-    <string name="tutorialText3">Lorem Ipsum</string>
+    <string name="tutorialText1">
+        To support your backbone properly, you have to sit in the right angle.\n\n
+        This means you should sit straight in, put your feet parallel on the ground
+        and push your chest out.\n\n
+        Your backbone has to be S-shaped as highlighted in the picture.
+    </string>
+    <string name="tutorialText2">
+        To even the load on your back prevent crossing your legs.\n\n
+        With your legs crossed, your backbone can not be in absolute balance.
+        One side will always be more loaded than the other.\n\n
+        To prevent this, you should place your feed always parallel on the ground.
+    </string>
+    <string name="tutorialText3">
+        Uneven load on your backbone can also be caused by wearing a
+        purse in your back-pocket.\n\n
+        This uneven load can - similar to crossing legs - cause serious backbone
+        problems by relocating your weight on one side of your body.
+    </string>
     <string name="tutorialSwipe">Swipe to continue</string>
     <string name="tutorialButtonClose">Close Tutorial</string>
     <string name="tutorialImageDescr">Tutorial Image</string>
@@ -46,7 +61,10 @@
         Advice #02
     </string>
     <string name="overviewAdviceText4">
-        Advice #03
+        <b>Uneven load on the front</b>\n\n
+        You are not sitting in the right angle.
+        Try to move more weight of your body to the rear
+        of the chair.
     </string>
     <string name="overviewAdviceText5">
         Advice #04
@@ -55,33 +73,52 @@
         Advice #05
     </string>
     <string name="overviewAdviceText7">
-        Advice #06
+        <b>Uneven load on the rear</b>\n\n
+        You are not sitting in the right angle.
+        Try to move more weight of your body to the front
+        of the chair.
     </string>
     <string name="overviewAdviceText8">
-        Advice #07
+        <b>Uneven load on the front left</b>\n\n
+        Try to sit in balance or are you crossing your legs?\n
+        (right leg over your left leg)
     </string>
     <string name="overviewAdviceText9">
-        Advice #08
+        <b>Uneven load on the rear left</b>\n\n
+        Try to sit in balance or are you wearing purse?\n
+        (in your left back-pocket)
     </string>
     <string name="overviewAdviceText10">
-        Advice #09
+        <b>Uneven load on the left</b>\n\n
+        You are not sitting in the right angle.
+        Try to move more weight of your body to the right side
+        of the chair.
     </string>
     <string name="overviewAdviceText11">
-        Advice #10
+        <b>Uneven load on the front right</b>\n\n
+        Try to sit in balance or are you crossing your legs?\n
+        (left leg over your right leg)
     </string>
     <string name="overviewAdviceText12">
-        Advice #11
+        <b>Uneven load on rear right</b>\n\n
+        Try to sit in balance or are you wearing purse?\n
+        (in your right back-pocket)
     </string>
     <string name="overviewAdviceText13">
-        Advice #12
+        <b>Uneven load on the right</b>\n\n
+        You are not sitting in the right angle.
+        Try to move more weight of your body to the left side
+        of the chair.
     </string>
     <string name="timer">00:00 min</string>
+    <string name="timerElapsed">Time to stand up! \nTap to restart Timer.</string>
     <string name="firstStart"></string>
-    <string name="settingsTimer">Timer Interval in s</string>
+    <string name="settingsTimer">Timer Interval in minutes</string>
     <string name="settingsSave">Save and Close</string>
-    <string-array name="settingsTimerInterval">
-        <item>10 Seconds</item>
-        <item>30 Seconds</item>
-        <item>60 Seconds</item>
-    </string-array>
+    <integer-array name="settingsTimerInterval">
+        <item>10</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </integer-array>
 </resources>

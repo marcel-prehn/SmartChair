@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Overview extends Activity {
 
@@ -86,18 +87,27 @@ public class Overview extends Activity {
     }
 
     private void StartTimer() {
-        //final int timerInterval = getResources().getInteger(R.integer.timerInterval);
-        final int INTERVAL = 30000;
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        final int timerIndex = preferences.getInt("timerIntervalIndex", 1);
+        final int[] timerValues = getResources().getIntArray(R.array.settingsTimerInterval);
+
+        Log.i("timer", "index: " + timerIndex);
+        Log.i("timer", "value: " + timerValues[timerIndex]);
+
+        final int INTERVAL = (timerValues[timerIndex]) * 1000 * 60;
+        Log.i("timer", "interval: " + INTERVAL);
+
         try {
             timer = new CountDownTimer(INTERVAL, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    tvTimer.setText(String.format("%02d:%02d", millisUntilFinished / 60000, millisUntilFinished / 1000));
+
+                    tvTimer.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
                 }
 
                 @Override
                 public void onFinish() {
-                    tvTimer.setText("Stand up. Tap to restart Timer.");
+                    tvTimer.setText(getText(R.string.timerElapsed));
                     tvTimer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

@@ -17,7 +17,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:src="@drawable/sitting"
+        android:src="@drawable/sitting_angle"
         android:id="@+id/ivTutorial1"
         android:cropToPadding="true"
         android:adjustViewBounds="true"
