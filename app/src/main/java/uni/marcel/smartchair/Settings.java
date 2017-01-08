@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,13 +24,15 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        preferences = getPreferences(Context.MODE_PRIVATE);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         index = preferences.getInt("timerIntervalIndex", 1);
+
+        Log.i("timer", "loaded index " + index);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         btClose = (Button) findViewById(R.id.btSettingsSave);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.settingsTimerInterval, R.layout.settings_interval_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, (R.array.settingsTimerInterval), R.layout.settings_interval_item);
         adapter.setDropDownViewResource(R.layout.settings_interval_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(index);
@@ -51,6 +54,7 @@ public class Settings extends Activity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("timerIntervalIndex", index);
                 editor.commit();
+                Log.i("timer", "saved index " + index);
                 finish();
             }
         });

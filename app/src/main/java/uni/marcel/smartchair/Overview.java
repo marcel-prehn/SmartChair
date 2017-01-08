@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Overview extends Activity {
@@ -23,6 +21,7 @@ public class Overview extends Activity {
     private Thread threadRead;
     private SmartChair chair;
     private CountDownTimer timer;
+    private SharedPreferences preferences;
 
     TextView tvLoad0;
     TextView tvLoad1;
@@ -54,9 +53,6 @@ public class Overview extends Activity {
     private void Initialize() {
         bt = new BtAdapter();
         //chair = new SmartChair(deviceName);
-
-
-
         tvAdvice = (TextView) findViewById(R.id.tvAdviceText);
         textViews = new TextView[8];
         tvLoad0 = (TextView)findViewById(R.id.tvLoad0);
@@ -87,21 +83,18 @@ public class Overview extends Activity {
     }
 
     private void StartTimer() {
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        final int timerIndex = preferences.getInt("timerIntervalIndex", 1);
-        final int[] timerValues = getResources().getIntArray(R.array.settingsTimerInterval);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final int index = preferences.getInt("timerIntervalIndex", 3);
+        final String[] timerValues = getResources().getStringArray(R.array.settingsTimerInterval);
 
-        Log.i("timer", "index: " + timerIndex);
-        Log.i("timer", "value: " + timerValues[timerIndex]);
+        Log.i("timer", "index: " + index);
 
-        final int INTERVAL = (timerValues[timerIndex]) * 1000 * 60;
-        Log.i("timer", "interval: " + INTERVAL);
+        final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000 * 60;
 
         try {
             timer = new CountDownTimer(INTERVAL, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-
                     tvTimer.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
                 }
 
@@ -120,7 +113,6 @@ public class Overview extends Activity {
         catch (Exception ex) {
             Log.e("timer", ex.getMessage());
         }
-
     }
 
     private void Connect() throws IOException {
@@ -285,7 +277,6 @@ public class Overview extends Activity {
                 imgOverview.setImageResource(R.drawable.smartchair_overview2);
                 tvAdvice.setText(R.string.overviewAdviceText1);
             }
-
         }
     }
 
@@ -312,7 +303,6 @@ public class Overview extends Activity {
         catch (IOException ex) {
             Log.e("onresume", ex.toString());
         }
-
     }
 
     @Override

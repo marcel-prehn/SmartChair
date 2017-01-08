@@ -115,10 +115,10 @@
     <string name="firstStart"></string>
     <string name="settingsTimer">Timer Interval in minutes</string>
     <string name="settingsSave">Save and Close</string>
-    <integer-array name="settingsTimerInterval">
+    <string-array name="settingsTimerInterval">
         <item>10</item>
         <item>30</item>
         <item>45</item>
         <item>60</item>
-    </integer-array>
+    </string-array>
 </resources>
