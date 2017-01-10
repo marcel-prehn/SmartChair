@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Overview extends Activity {
 
@@ -22,6 +21,7 @@ public class Overview extends Activity {
     private Thread threadRead;
     private SmartChair chair;
     private CountDownTimer timer;
+    private SharedPreferences preferences;
 
     TextView tvLoad0;
     TextView tvLoad1;
@@ -53,9 +53,6 @@ public class Overview extends Activity {
     private void Initialize() {
         bt = new BtAdapter();
         //chair = new SmartChair(deviceName);
-
-
-
         tvAdvice = (TextView) findViewById(R.id.tvAdviceText);
         textViews = new TextView[8];
         tvLoad0 = (TextView)findViewById(R.id.tvLoad0);
@@ -86,18 +83,24 @@ public class Overview extends Activity {
     }
 
     private void StartTimer() {
-        //final int timerInterval = getResources().getInteger(R.integer.timerInterval);
-        final int INTERVAL = 30000;
+        preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        final int index = preferences.getInt("timerIntervalIndex", 3);
+        final String[] timerValues = getResources().getStringArray(R.array.settingsTimerInterval);
+
+        Log.i("timer", "index: " + index);
+
+        final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000 * 60;
+
         try {
             timer = new CountDownTimer(INTERVAL, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    tvTimer.setText(String.format("%02d:%02d", millisUntilFinished / 60000, millisUntilFinished / 1000));
+                    tvTimer.setText(String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
                 }
 
                 @Override
                 public void onFinish() {
-                    tvTimer.setText("Stand up. Tap to restart Timer.");
+                    tvTimer.setText(getText(R.string.timerElapsed));
                     tvTimer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -110,7 +113,6 @@ public class Overview extends Activity {
         catch (Exception ex) {
             Log.e("timer", ex.getMessage());
         }
-
     }
 
     private void Connect() throws IOException {
@@ -181,101 +183,113 @@ public class Overview extends Activity {
     }
 
     private void UpdateImage(Sensor[] sensors) {
-        ImageView imgOverview = (ImageView)findViewById(R.id.imgOverview);
+
         if(sensors != null && sensors.length == 8) {
             //TODO Threshold values
-            final int THRESHOLD = 20;
+            final float THRESHOLD = 1.5f;
             int left = sensors[0].getValue() + sensors[3].getValue() + sensors[5].getValue();
             int right = sensors[2].getValue() + sensors[4].getValue() + sensors[7].getValue();
             int front = sensors[0].getValue() + sensors[1].getValue() + sensors[2].getValue();
             int back = sensors[5].getValue() + sensors[6].getValue() + sensors[7].getValue();
             int sensor0 = sensors[0].getValue();
-            int sensor1 = sensors[1].getValue();
             int sensor2 = sensors[2].getValue();
-            int sensor3 = sensors[3].getValue();
-            int sensor4 = sensors[4].getValue();
             int sensor5 = sensors[5].getValue();
-            int sensor6 = sensors[6].getValue();
             int sensor7 = sensors[7].getValue();
 
-            // front
-            if(front > back) {
-                // sensor0
+            if(front*THRESHOLD > back) {
                 if(sensor0 > sensor2) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_0);
-                    tvAdvice.setText(R.string.overviewAdviceText2);
+                    Highlight(Sensors.SENSOR0);
                 }
-                // sensor2
-                else if(sensor0 < sensor2) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_2);
-                    tvAdvice.setText(R.string.overviewAdviceText3);
+                else if(sensor2 > sensor0) {
+                    Highlight(Sensors.SENSOR2);
                 }
-                // front
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_front);
-                    tvAdvice.setText(R.string.overviewAdviceText4);
+                    Highlight(Sensors.FRONT);
                 }
             }
-            // back
-            if(front < back) {
-                // sensor5
+            else if(back > front*THRESHOLD) {
                 if(sensor5 > sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_5);
-                    tvAdvice.setText(R.string.overviewAdviceText5);
+                    Highlight(Sensors.SENSOR5);
                 }
-                // sensor7
-                else if(sensor5 < sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_7);
-                    tvAdvice.setText(R.string.overviewAdviceText6);
+                else if(sensor7 > sensor5) {
+                    Highlight(Sensors.SENSOR7);
                 }
-                // back
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_back);
-                    tvAdvice.setText(R.string.overviewAdviceText7);
+                    Highlight(Sensors.BACK);
                 }
             }
-            // left
-            if(left > right) {
-                // sensor0
+            else if(left > right) {
                 if(sensor0 > sensor5) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_0);
-                    tvAdvice.setText(R.string.overviewAdviceText8);
+                    Highlight(Sensors.SENSOR0);
                 }
-                // sensor5
-                else if(sensor0 < sensor5) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_5);
-                    tvAdvice.setText(R.string.overviewAdviceText9);
+                else if(sensor5 > sensor0) {
+                    Highlight(Sensors.SENSOR5);
                 }
-                // left
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_left);
-                    tvAdvice.setText(R.string.overviewAdviceText10);
+                    Highlight(Sensors.LEFT);
                 }
             }
-            // right
-            if(left < right) {
-                // sensor2
+            else if(right > left) {
                 if(sensor2 > sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_2);
-                    tvAdvice.setText(R.string.overviewAdviceText11);
+                    Highlight(Sensors.SENSOR2);
                 }
-                // sensor7
-                else if(sensor2 < sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_7);
-                    tvAdvice.setText(R.string.overviewAdviceText12);
+                else if(sensor7 > sensor2) {
+                    Highlight(Sensors.SENSOR7);
                 }
-                // right
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_right);
-                    tvAdvice.setText(R.string.overviewAdviceText13);
+                    Highlight(Sensors.RIGHT);
                 }
             }
-            // reset seat
-            if(left == right && front == back) {
-                imgOverview.setImageResource(R.drawable.smartchair_overview2);
-                tvAdvice.setText(R.string.overviewAdviceText1);
+            else {
+                Highlight(Sensors.NONE);
             }
 
+        }
+    }
+
+    private void Highlight(Sensors sensor) {
+        ImageView imgOverview = (ImageView)findViewById(R.id.imgOverview);
+
+        switch (sensor) {
+            case SENSOR0:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_0);
+                tvAdvice.setText(R.string.overviewAdviceText8);
+                break;
+            case SENSOR2:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_2);
+                tvAdvice.setText(R.string.overviewAdviceText3);
+                break;
+            case SENSOR5:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_5);
+                tvAdvice.setText(R.string.overviewAdviceText5);
+                break;
+            case SENSOR7:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_7);
+                tvAdvice.setText(R.string.overviewAdviceText6);
+                break;
+            case FRONT:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_front);
+                tvAdvice.setText(R.string.overviewAdviceText4);
+                break;
+            case BACK:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_back);
+                tvAdvice.setText(R.string.overviewAdviceText7);
+                break;
+            case LEFT:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_left);
+                tvAdvice.setText(R.string.overviewAdviceText10);
+                break;
+            case RIGHT:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_right);
+                tvAdvice.setText(R.string.overviewAdviceText13);
+                break;
+            case NONE:
+                imgOverview.setImageResource(R.drawable.smartchair_overview2);
+                tvAdvice.setText(R.string.overviewAdviceText1);
+                break;
+            default:
+                imgOverview.setImageResource(R.drawable.smartchair_overview2);
+                tvAdvice.setText(R.string.overviewAdviceText1);
         }
     }
 
@@ -302,7 +316,6 @@ public class Overview extends Activity {
         catch (IOException ex) {
             Log.e("onresume", ex.toString());
         }
-
     }
 
     @Override
