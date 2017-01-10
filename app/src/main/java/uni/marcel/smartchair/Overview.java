@@ -223,11 +223,11 @@ public class Overview extends Activity {
             //int sensor7lower = sensor7 - LOWER;
             //int sensor7upper = sensor7 - UPPER;
 
-            if((front-back) > t) {
-                if((sensor0-sensor2) > t) {
+            if((front - back) > t) {
+                if((sensor0 - sensor2) > t) {
                     Highlight(Sensors.SENSOR0);
                 }
-                else if((sensor2-sensor0) > t) {
+                else if((sensor2 - sensor0) > t) {
                     Highlight(Sensors.SENSOR2);
                 }
                 else {
@@ -235,10 +235,10 @@ public class Overview extends Activity {
                 }
             }
             else if((back - front) > t) {
-                if((sensor5-sensor7) > t) {
+                if((sensor5 - sensor7) > t) {
                     Highlight(Sensors.SENSOR5);
                 }
-                else if((sensor7-sensor5) > t) {
+                else if((sensor7 - sensor5) > t) {
                     Highlight(Sensors.SENSOR7);
                 }
                 else {
@@ -246,10 +246,10 @@ public class Overview extends Activity {
                 }
             }
             else if((left - right) > t) {
-                if((sensor0-sensor5) > t) {
+                if((sensor0 - sensor5) > t) {
                     Highlight(Sensors.SENSOR0);
                 }
-                else if((sensor5-sensor0) > t) {
+                else if((sensor5 - sensor0) > t) {
                     Highlight(Sensors.SENSOR5);
                 }
                 else {
@@ -257,10 +257,10 @@ public class Overview extends Activity {
                 }
             }
             else if((right - left) > t) {
-                if((sensor2-sensor7) > t) {
+                if((sensor2 - sensor7) > t) {
                     Highlight(Sensors.SENSOR2);
                 }
-                else if((sensor7-sensor2) > t) {
+                else if((sensor7 - sensor2) > t) {
                     Highlight(Sensors.SENSOR7);
                 }
                 else {
