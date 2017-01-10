@@ -185,18 +185,45 @@ public class Overview extends Activity {
     private void UpdateImage(Sensor[] sensors) {
 
         if(sensors != null && sensors.length == 8) {
-            //TODO Threshold values
+            //TODO lower and upper limits in settings
+            // fixed values
             final float THRESHOLD = 1.5f;
+            final int LOWER = 50;
+            final int UPPER = 50;
+            // left side
             int left = sensors[0].getValue() + sensors[3].getValue() + sensors[5].getValue();
+            int leftLower = left - LOWER;
+            int leftUpper = left - UPPER;
+            // right side
             int right = sensors[2].getValue() + sensors[4].getValue() + sensors[7].getValue();
-            int front = sensors[0].getValue() + sensors[1].getValue() + sensors[2].getValue();
+            int rightLower = right - LOWER;
+            int rightUpper = right - UPPER;
+            // front side
+            int front = Math.round((sensors[0].getValue() + sensors[1].getValue() + sensors[2].getValue()) * THRESHOLD);
+            int frontLower = front - LOWER;
+            int frontUpper = front - UPPER;
+            // back side
             int back = sensors[5].getValue() + sensors[6].getValue() + sensors[7].getValue();
+            int backLower = back - LOWER;
+            int backUpper = back - UPPER;
+            // sensor0
             int sensor0 = sensors[0].getValue();
+            int sensor0lower = sensor0 - LOWER;
+            int sensor0upper = sensor0 - UPPER;
+            // sensor2
             int sensor2 = sensors[2].getValue();
+            int sensor2lower = sensor2 - LOWER;
+            int sensor2upper = sensor2 - UPPER;
+            // sensor5
             int sensor5 = sensors[5].getValue();
+            int sensor5lower = sensor5 - LOWER;
+            int sensor5upper = sensor5 - UPPER;
+            // sensor7
             int sensor7 = sensors[7].getValue();
+            int sensor7lower = sensor7 - LOWER;
+            int sensor7upper = sensor7 - UPPER;
 
-            if(front*THRESHOLD > back) {
+            if(front > back) {
                 if(sensor0 > sensor2) {
                     Highlight(Sensors.SENSOR0);
                 }
@@ -207,7 +234,7 @@ public class Overview extends Activity {
                     Highlight(Sensors.FRONT);
                 }
             }
-            else if(back > front*THRESHOLD) {
+            else if(back > front) {
                 if(sensor5 > sensor7) {
                     Highlight(Sensors.SENSOR5);
                 }
