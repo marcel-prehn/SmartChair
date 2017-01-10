@@ -183,100 +183,113 @@ public class Overview extends Activity {
     }
 
     private void UpdateImage(Sensor[] sensors) {
-        ImageView imgOverview = (ImageView)findViewById(R.id.imgOverview);
+
         if(sensors != null && sensors.length == 8) {
             //TODO Threshold values
-            final int THRESHOLD = 20;
+            final float THRESHOLD = 1.5f;
             int left = sensors[0].getValue() + sensors[3].getValue() + sensors[5].getValue();
             int right = sensors[2].getValue() + sensors[4].getValue() + sensors[7].getValue();
             int front = sensors[0].getValue() + sensors[1].getValue() + sensors[2].getValue();
             int back = sensors[5].getValue() + sensors[6].getValue() + sensors[7].getValue();
             int sensor0 = sensors[0].getValue();
-            int sensor1 = sensors[1].getValue();
             int sensor2 = sensors[2].getValue();
-            int sensor3 = sensors[3].getValue();
-            int sensor4 = sensors[4].getValue();
             int sensor5 = sensors[5].getValue();
-            int sensor6 = sensors[6].getValue();
             int sensor7 = sensors[7].getValue();
 
-            // front
-            if(front > back) {
-                // sensor0
+            if(front*THRESHOLD > back) {
                 if(sensor0 > sensor2) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_0);
-                    tvAdvice.setText(R.string.overviewAdviceText2);
+                    Highlight(Sensors.SENSOR0);
                 }
-                // sensor2
-                else if(sensor0 < sensor2) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_2);
-                    tvAdvice.setText(R.string.overviewAdviceText3);
+                else if(sensor2 > sensor0) {
+                    Highlight(Sensors.SENSOR2);
                 }
-                // front
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_front);
-                    tvAdvice.setText(R.string.overviewAdviceText4);
+                    Highlight(Sensors.FRONT);
                 }
             }
-            // back
-            if(front < back) {
-                // sensor5
+            else if(back > front*THRESHOLD) {
                 if(sensor5 > sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_5);
-                    tvAdvice.setText(R.string.overviewAdviceText5);
+                    Highlight(Sensors.SENSOR5);
                 }
-                // sensor7
-                else if(sensor5 < sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_7);
-                    tvAdvice.setText(R.string.overviewAdviceText6);
+                else if(sensor7 > sensor5) {
+                    Highlight(Sensors.SENSOR7);
                 }
-                // back
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_back);
-                    tvAdvice.setText(R.string.overviewAdviceText7);
+                    Highlight(Sensors.BACK);
                 }
             }
-            // left
-            if(left > right) {
-                // sensor0
+            else if(left > right) {
                 if(sensor0 > sensor5) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_0);
-                    tvAdvice.setText(R.string.overviewAdviceText8);
+                    Highlight(Sensors.SENSOR0);
                 }
-                // sensor5
-                else if(sensor0 < sensor5) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_5);
-                    tvAdvice.setText(R.string.overviewAdviceText9);
+                else if(sensor5 > sensor0) {
+                    Highlight(Sensors.SENSOR5);
                 }
-                // left
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_left);
-                    tvAdvice.setText(R.string.overviewAdviceText10);
+                    Highlight(Sensors.LEFT);
                 }
             }
-            // right
-            if(left < right) {
-                // sensor2
+            else if(right > left) {
                 if(sensor2 > sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_2);
-                    tvAdvice.setText(R.string.overviewAdviceText11);
+                    Highlight(Sensors.SENSOR2);
                 }
-                // sensor7
-                else if(sensor2 < sensor7) {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_7);
-                    tvAdvice.setText(R.string.overviewAdviceText12);
+                else if(sensor7 > sensor2) {
+                    Highlight(Sensors.SENSOR7);
                 }
-                // right
                 else {
-                    imgOverview.setImageResource(R.drawable.smartchair_overview_right);
-                    tvAdvice.setText(R.string.overviewAdviceText13);
+                    Highlight(Sensors.RIGHT);
                 }
             }
-            // reset seat
-            if(left == right && front == back) {
+            else {
+                Highlight(Sensors.NONE);
+            }
+
+        }
+    }
+
+    private void Highlight(Sensors sensor) {
+        ImageView imgOverview = (ImageView)findViewById(R.id.imgOverview);
+
+        switch (sensor) {
+            case SENSOR0:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_0);
+                tvAdvice.setText(R.string.overviewAdviceText8);
+                break;
+            case SENSOR2:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_2);
+                tvAdvice.setText(R.string.overviewAdviceText3);
+                break;
+            case SENSOR5:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_5);
+                tvAdvice.setText(R.string.overviewAdviceText5);
+                break;
+            case SENSOR7:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_7);
+                tvAdvice.setText(R.string.overviewAdviceText6);
+                break;
+            case FRONT:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_front);
+                tvAdvice.setText(R.string.overviewAdviceText4);
+                break;
+            case BACK:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_back);
+                tvAdvice.setText(R.string.overviewAdviceText7);
+                break;
+            case LEFT:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_left);
+                tvAdvice.setText(R.string.overviewAdviceText10);
+                break;
+            case RIGHT:
+                imgOverview.setImageResource(R.drawable.smartchair_overview_right);
+                tvAdvice.setText(R.string.overviewAdviceText13);
+                break;
+            case NONE:
                 imgOverview.setImageResource(R.drawable.smartchair_overview2);
                 tvAdvice.setText(R.string.overviewAdviceText1);
-            }
+                break;
+            default:
+                imgOverview.setImageResource(R.drawable.smartchair_overview2);
+                tvAdvice.setText(R.string.overviewAdviceText1);
         }
     }
 
