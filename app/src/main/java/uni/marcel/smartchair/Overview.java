@@ -3,6 +3,7 @@ package uni.marcel.smartchair;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -22,6 +23,7 @@ public class Overview extends Activity {
     private SmartChair chair;
     private CountDownTimer timer;
     private SharedPreferences preferences;
+    private MediaPlayer player;
 
     TextView tvLoad0;
     TextView tvLoad1;
@@ -89,7 +91,9 @@ public class Overview extends Activity {
 
         Log.i("timer", "index: " + index);
 
-        final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000 * 60;
+       // final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000 * 60;
+        //DEBUG ONLY
+        final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000;
 
         try {
             timer = new CountDownTimer(INTERVAL, 1000) {
@@ -100,6 +104,7 @@ public class Overview extends Activity {
 
                 @Override
                 public void onFinish() {
+                    PlayNotification();
                     tvTimer.setText(getText(R.string.timerElapsed));
                     tvTimer.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -183,45 +188,19 @@ public class Overview extends Activity {
     }
 
     private void UpdateImage(Sensor[] sensors) {
-
         if(sensors != null && sensors.length == 8) {
-            //TODO lower and upper limits in settings
             // fixed values
-            final float THRESHOLD = 1.5f;
-            final int t = 50;
+            final float THRESHOLD = 1.0f;
+            final int t = 100;
 
-            // left side
             int left = sensors[0].getValue() + sensors[3].getValue() + sensors[5].getValue();
-            //int leftLower = left - LOWER;
-            //int leftUpper = left - UPPER;
-            // right side
             int right = sensors[2].getValue() + sensors[4].getValue() + sensors[7].getValue();
-            //int rightLower = right - LOWER;
-            //int rightUpper = right - UPPER;
-            // front side
             int front = Math.round((sensors[0].getValue() + sensors[1].getValue() + sensors[2].getValue()) * THRESHOLD);
-            //int frontLower = front - LOWER;
-            //int frontUpper = front - UPPER;
-            // back side
             int back = sensors[5].getValue() + sensors[6].getValue() + sensors[7].getValue();
-            //int backLower = back - LOWER;
-            //int backUpper = back - UPPER;
-            // sensor0
             int sensor0 = sensors[0].getValue();
-            //int sensor0lower = sensor0 - LOWER;
-            //int sensor0upper = sensor0 - UPPER;
-            // sensor2
             int sensor2 = sensors[2].getValue();
-            //int sensor2lower = sensor2 - LOWER;
-            //int sensor2upper = sensor2 - UPPER;
-            // sensor5
             int sensor5 = sensors[5].getValue();
-            //int sensor5lower = sensor5 - LOWER;
-            //int sensor5upper = sensor5 - UPPER;
-            // sensor7
             int sensor7 = sensors[7].getValue();
-            //int sensor7lower = sensor7 - LOWER;
-            //int sensor7upper = sensor7 - UPPER;
 
             if((front - back) > t) {
                 if((sensor0 - sensor2) > t) {
@@ -270,7 +249,6 @@ public class Overview extends Activity {
             else {
                 Highlight(Sensors.NONE);
             }
-
         }
     }
 
@@ -318,6 +296,11 @@ public class Overview extends Activity {
                 imgOverview.setImageResource(R.drawable.smartchair_overview2);
                 tvAdvice.setText(R.string.overviewAdviceText1);
         }
+    }
+
+    private void PlayNotification() {
+        player = MediaPlayer.create(this, R.raw.notification);
+        player.start();
     }
 
     @Override
