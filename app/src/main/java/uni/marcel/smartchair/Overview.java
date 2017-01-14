@@ -25,6 +25,8 @@ public class Overview extends Activity {
     private SharedPreferences preferences;
     private MediaPlayer player;
 
+    private final boolean DEBUG = false;
+
     TextView tvLoad0;
     TextView tvLoad1;
     TextView tvLoad2;
@@ -74,6 +76,14 @@ public class Overview extends Activity {
         textViews[6] = tvLoad6;
         textViews[7] = tvLoad7;
         tvTimer = (TextView) findViewById(R.id.tvTimer);
+
+        if(!DEBUG) {
+            for(TextView tv : textViews) {
+                if(tv != null) {
+                    tv.setVisibility(View.INVISIBLE);
+                }
+            }
+        }
     }
 
     private void SetDeviceName() {
