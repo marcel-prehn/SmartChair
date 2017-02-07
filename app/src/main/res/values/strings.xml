@@ -52,6 +52,7 @@
     <string name="tutorialImageDescr">Tutorial Image</string>
     <string name="overviewAdviceTitle">Advice</string>
     <string name="overviewAdviceText1">
+        <b>Your sitting position is balanced.</b>\n\n
         No advice necessary.
     </string>
     <string name="overviewAdviceText2">

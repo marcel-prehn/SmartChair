@@ -1,12 +1,20 @@
 package uni.marcel.smartchair;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import java.io.IOException;
+
 public class SmartChair {
 
+    private String deviceName;
     private Sensor[] sensors;
     private int THRESHOLD = 50;
+    private BtAdapter btAdapter;
+    private BtThread btThread;
 
-    public SmartChair() {
-
+    public SmartChair(String deviceName) {
+        this.deviceName = deviceName;
     }
 
     public Sensor[] getSensors() {
@@ -41,6 +49,17 @@ public class SmartChair {
         }
         else {
             return null;
+        }
+    }
+
+    private void Connect() throws IOException {
+        try {
+            if (btAdapter != null) {
+                btAdapter.connect(deviceName);
+            }
+        }
+        catch (Exception ex) {
+            Log.e("smartchair", "connect:" + ex.toString());
         }
     }
 
