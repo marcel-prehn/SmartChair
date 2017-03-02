@@ -20,13 +20,11 @@ public class Overview extends Activity {
     private BtAdapter bt;
     private String deviceName;
     private Thread threadRead;
-    private SmartChair chair;
     private CountDownTimer timer;
     private SharedPreferences preferences;
     private MediaPlayer player;
 
     private final boolean DEBUG = true;
-    private boolean isMeasuringLoad = false;
 
     TextView tvLoad0;
     TextView tvLoad1;
@@ -57,8 +55,6 @@ public class Overview extends Activity {
 
     private void Initialize() {
         bt = new BtAdapter();
-        //chair = new SmartChair(deviceName);
-
         tvAdvice = (TextView) findViewById(R.id.tvAdviceText);
         textViews = new TextView[8];
         tvLoad0 = (TextView)findViewById(R.id.tvLoad0);
@@ -103,7 +99,7 @@ public class Overview extends Activity {
 
         Log.i("timer", "index: " + index);
 
-       final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000 * 60;
+        final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000 * 60;
         //DEBUG ONLY
         //final int INTERVAL = (Integer.parseInt(timerValues[index])) * 1000;
 
@@ -129,12 +125,6 @@ public class Overview extends Activity {
         }
         catch (Exception ex) {
             Log.e("timer", ex.getMessage());
-        }
-    }
-
-    private void WaitForStandUp() {
-        while(isMeasuringLoad) {
-
         }
     }
 

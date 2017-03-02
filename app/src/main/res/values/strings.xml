@@ -59,7 +59,9 @@
         Advice #01
     </string>
     <string name="overviewAdviceText3">
-        Advice #02
+        <b>Uneven load on the front right</b>\n\n
+        Try to sit in balance or are you crossing your legs?\n
+        (left leg over your right leg)
     </string>
     <string name="overviewAdviceText4">
         <b>Uneven load on the front</b>\n\n
@@ -68,10 +70,14 @@
         of the chair.
     </string>
     <string name="overviewAdviceText5">
-        Advice #04
+        <b>Uneven load on the rear left</b>\n\n
+        Try to sit in balance or are you wearing purse?\n
+        (in your left back-pocket)
     </string>
     <string name="overviewAdviceText6">
-        Advice #05
+        <b>Uneven load on the rear right</b>\n\n
+        Try to sit in balance or are you wearing purse?\n
+        (in your right back-pocket)
     </string>
     <string name="overviewAdviceText7">
         <b>Uneven load on the rear</b>\n\n
