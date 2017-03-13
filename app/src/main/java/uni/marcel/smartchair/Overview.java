@@ -24,7 +24,7 @@ public class Overview extends Activity {
     private SharedPreferences preferences;
     private MediaPlayer player;
 
-    private final boolean DEBUG = true;
+    private final boolean DEBUG = false;
 
     TextView tvLoad0;
     TextView tvLoad1;
